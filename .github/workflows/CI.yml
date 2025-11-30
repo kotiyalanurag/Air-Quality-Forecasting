@@ -1,0 +1,15 @@
+name: CI Dockerized FastAPI AQI App
+ 
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    dockerbuild:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+        - name: Build The Docker Image
+          run: docker build . --file Dockerfile --tag workflow-test:$(date +%s)
